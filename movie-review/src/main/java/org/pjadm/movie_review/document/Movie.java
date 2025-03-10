@@ -20,8 +20,8 @@ import java.util.List;
 public class Movie {
 
     @Id
-    private ObjectId id;
-    private String imbdId;
+    private ObjectId _id;
+    private String imdbId;
     private String title;
     private String releaseDate;
     private String trailerLink;
@@ -31,4 +31,15 @@ public class Movie {
 
     @DocumentReference
     private List<Review> reviewIds;
+
+    public Movie(String imdbId, String title, String releaseDate, String trailerLink, List<String> genres, String poster, List<String> backdrops) {
+        this.imdbId = imdbId;
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.trailerLink = trailerLink;
+        this.genres = genres;
+        this.poster = poster;
+        this.backdrops = backdrops;
+    }
+
 }

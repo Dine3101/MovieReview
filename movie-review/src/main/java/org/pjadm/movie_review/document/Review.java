@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Document
+@Document(collection = "reviews")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,4 +18,11 @@ public class Review {
     private String body;
     private LocalDateTime created;
     private LocalDateTime updated;
+
+    public Review(String body, LocalDateTime created, LocalDateTime updated) {
+        this.body = body;
+        this.created = created;
+        this.updated = updated;
+    }
+
 }
