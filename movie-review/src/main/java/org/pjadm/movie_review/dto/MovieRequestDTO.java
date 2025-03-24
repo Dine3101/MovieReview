@@ -21,5 +21,4 @@ public class MovieRequestDTO {
     private List<String> genres;
     private String poster;
     private List<String> backdrops;
-
 }

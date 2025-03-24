@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pjadm.movie_review.document.Movie;
 import org.pjadm.movie_review.dto.MovieRequestDTO;
 import org.pjadm.movie_review.dto.MovieResponseDTO;
+import org.pjadm.movie_review.dto.ReviewRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -70,9 +71,10 @@ public class MovieOperations {
         movie.setTitle("RRR - Tamil Dubbed");
         movie.setTrailerLink("");
         movie.setReleaseDate("");
-        movie.setGenres(null);
+        movie.setGenres(new ArrayList<>());
         movie.setPoster("");
-        movie.setBackdrops(null);
+        movie.setBackdrops(new ArrayList<>());
+        movie.setReviewIds(new ArrayList<>());
         return movie;
     }
 
@@ -82,5 +84,14 @@ public class MovieOperations {
 
     public static String getSampleMovieRequestDTOJson() throws JsonProcessingException {
         return new ObjectMapper().writeValueAsString(getSampleMovieRequestDTO());
+    }
+
+    public static ReviewRequestDTO getSampleReviewRequestDTO(){
+        String reviewBody="Sample Review for Troll Movie";
+        return new ReviewRequestDTO(reviewBody);
+    }
+
+    public static String getSampleReviewRequestDTOJson() throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(getSampleReviewRequestDTO());
     }
 }

@@ -1,6 +1,7 @@
 package org.pjadm.movie_review.repository;
 
 import org.pjadm.movie_review.document.Movie;
+import org.pjadm.movie_review.document.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -14,14 +15,18 @@ public class MovieRepository implements RepositoryTemplate<Movie>{
 
     private final MongoTemplate mongoTemplate;
 
+    private final ReviewRepository reviewRepository;
 
     @Autowired
-    public MovieRepository(MongoTemplate mongoTemplate){
+    public MovieRepository(MongoTemplate mongoTemplate,ReviewRepository reviewRepository){
         this.mongoTemplate=mongoTemplate;
+        this.reviewRepository=reviewRepository;
     }
     @Override
-    public void save(Movie movie) {
-        mongoTemplate.save(movie);
+    public Movie save(Movie movie) {
+
+        movie=mongoTemplate.save(movie);
+        return movie;
     }
 
     @Override
@@ -41,4 +46,15 @@ public class MovieRepository implements RepositoryTemplate<Movie>{
     public List<Movie> getAll() {
         return mongoTemplate.findAll(Movie.class,"movies");
     }
+
+    public void addReview(String imdbId, Review review){
+        reviewRepository.save(review);
+        List<Movie> movieList=get(imdbId);
+        Movie movie=movieList.get(0);
+        movie.getReviewIds().add(review);
+        save(movie);
+    }
+
+
+
 }
