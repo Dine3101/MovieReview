@@ -56,4 +56,22 @@ public class MovieService {
         movie.getReviewIds().add(review);
         movieRepository.save(movie);
     }
+
+    public List<MovieResponseDTO> deleteMovieReview(String imdbId,String reviewId){
+        List<Movie> movieList=movieRepository.get(imdbId);
+        Movie movie=movieList.get(0);
+        List<Review> reviewList=movie.getReviewIds();
+        int ind=0;
+        for(int i=0;i<reviewList.size();i++){
+            if(reviewList.get(i).getId().toString().equals(reviewId)){
+                ind=i;
+                break;
+            }
+        }
+        reviewList.remove(ind);
+        movie.setReviewIds(reviewList);
+        movieRepository.save(movie);
+        List<MovieResponseDTO> response=MovieOperations.convertToReponseDTOList(movieList);
+        return response;
+    }
 }

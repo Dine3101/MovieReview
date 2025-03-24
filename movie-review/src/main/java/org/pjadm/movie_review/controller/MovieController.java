@@ -60,6 +60,7 @@ public class MovieController {
 
     @DeleteMapping("/{imdb-id}/{review-id}")
     public List<MovieResponseDTO> deleteMovieReview(@PathVariable("imdb-id") String imdbId,@PathVariable("review-id") String reviewId){
+        movieService.deleteMovieReview(imdbId,reviewId);
         reviewService.deleteReview(reviewId);
         return movieService.getMoviesByImdbId(imdbId);
     }

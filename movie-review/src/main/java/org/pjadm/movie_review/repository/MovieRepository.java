@@ -47,6 +47,7 @@ public class MovieRepository implements RepositoryTemplate<Movie>{
         return mongoTemplate.findAll(Movie.class,"movies");
     }
 
+
     public void addReview(String imdbId, Review review){
         reviewRepository.save(review);
         List<Movie> movieList=get(imdbId);
@@ -54,7 +55,6 @@ public class MovieRepository implements RepositoryTemplate<Movie>{
         movie.getReviewIds().add(review);
         save(movie);
     }
-
 
 
 }
