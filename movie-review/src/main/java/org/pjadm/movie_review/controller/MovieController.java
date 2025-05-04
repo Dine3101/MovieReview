@@ -16,6 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/movie")
+@CrossOrigin(origins = "http://localhost:3000")
 public class MovieController {
 
     private MovieService movieService;
