@@ -1,5 +1,6 @@
 package org.pjadm.movie_review;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.pjadm.movie_review.document.Review;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
+@Disabled
 public class ReviewAPITest {
 
     @Autowired

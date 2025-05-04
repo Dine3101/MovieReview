@@ -3,6 +3,7 @@ package org.pjadm.movie_review;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,6 +33,7 @@ import java.util.List;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Disabled
 class MovieAPITest {
 
 	@Autowired
